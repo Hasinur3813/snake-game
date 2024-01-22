@@ -1,21 +1,103 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(to bottom, #C9D6FF,#E2E2E2);
 }
 
-h1 {
-    color: #333;
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.score_board{
+  width: 100%;
+  height: 30px;
+  /* background:#ffffff; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding:0 10px; */
+  box-sizing: border-box;
+  font-weight: 700;
+  color: green;
 }
 
-button {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
+.game-board {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)) ,url(../img/snakeBoard.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: cernter;
+  width: 300px;
+  height: 300px;
+  /* border: 2px solid #c00505; */
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  /* animation: warn 1s linear infinite; */
 }
 
-#output {
-    border: 1px solid #333;
-    padding: 10px;
-    margin: 10px;
+.game-board div {
+  width: 10px;
+  height: 10px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 8px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.snake,
+.head {
+  background: rgb(11, 232, 11);
+  border: 1px solid black;
+}
+
+.head {
+  background: red;
+}
+.food {
+  background: yellow;
+  animation: flick 1.5s linear infinite;
+  border-radius: 50%;
+}
+
+@keyframes flick {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes warn {
+  0% {
+    border: 2px solid #c00505;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }

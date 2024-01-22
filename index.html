@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hxTracer</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h1>hxTracer</h1>
-    <button id="startButton">Start Tracer</button>
-    <button id="stopButton">Stop Tracer</button>
-    <button id="startTooBusyButton">Start TooBusy</button>
-    <button id="stopTooBusyButton">Stop TooBusy</button>
-    <div id="output"></div>
-    <!-- <script src="./js/test.js"></script> -->
-    <script src="./app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake app</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+
+    <div class="container">
+      <!-- score board -->
+      <div class="score_board">
+        <div class="current_score">Score: 0</div>
+        <div class="high_score">High score: 0</div>
+      </div>
+  
+      <div class="game-board" id="grid"></div>
+    </div>
+
+    <script src="./js/test.js"></script>
+    <script type="module" src="./js/app.js"></script>
+  </body>
 </html>
