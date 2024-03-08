@@ -7,18 +7,28 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-
     <div class="container">
-      <!-- score board -->
-      <div class="score_board">
-        <div class="current_score">Score: 0</div>
-        <div class="high_score">High score: 0</div>
-      </div>
-  
-      <div class="game-board" id="grid">
-        <div class="game_over_board">
-          <h2>Game Over</h2>
-          <button id="replay_btn" onclick = 'location.reload()'>Replay</button>
+      <div class="gameBoardContainer">
+        <div class="score_board">
+          <div class="current_score">Score: 0</div>
+          <button onclick="location.reload()">&#8634</button>
+          <div class="high_score">High score: 0</div>
+        </div>
+
+        <div class="game-board" id="grid">
+          <div class="game_over_board">
+            <div class="setSpeed" id="speed_controller">
+              <label for="vol" id="view_speed">Set Speed: 2 </label>
+              <input type="range" id="vol" name="vol" min="1" max="4" />
+              <button id="play_btn" onclick="">Play</button>
+            </div>
+
+            <div class="gameOverInfo">
+              <h2>Game Over</h2>
+              <button id="replay_btn" onclick="location.reload()">Replay</button>
+            </div>
+            
+          </div>
         </div>
       </div>
 
@@ -28,7 +38,6 @@
         <button class="ArrowDown arrowBtns"></button>
         <button class="ArrowRight arrowBtns"></button>
       </div>
-      
     </div>
 
     <script type="module" src="./js/app.js"></script>

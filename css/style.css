@@ -4,31 +4,39 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
-  background: linear-gradient(to bottom, #C9D6FF,#E2E2E2);
+  background: linear-gradient(to bottom, #c9d6ff, #e2e2e2);
 }
 
-.container{
+.container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
-.score_board{
+.score_board {
   width: 100%;
   height: 30px;
-  /* background:#ffffff; */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* padding:0 10px; */
   box-sizing: border-box;
   font-weight: 700;
   color: green;
 }
+.score_board button{
+  font-size: 25px;
+  background: none;
+  border: none;
+  color: #a30c0c;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
 
 .game-board {
   position: relative;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)) ,url(../img/snakeBoard.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url(../img/snakeBoard.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -54,9 +62,9 @@ body {
   /* border: 1px solid #c00505; */
 }
 
-.game_over_board{
+.game_over_board {
   position: absolute;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -66,18 +74,23 @@ body {
   z-index: 100;
   transition: 0.3s ease-out;
 }
-.game_over_board h2{
+.game_over_board .gameOverInfo{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+}
+.game_over_board .gameOverInfo h2 {
   color: rgb(254, 48, 48);
   transition: 0.3s ease-out;
   transform: scale(0);
 }
-.game_over_board #replay_btn{
+.game_over_board .gameOverInfo #replay_btn {
   padding: 4px 10px;
   font-size: 16px;
   font-weight: 500;
   border: none;
   border-radius: 3px;
-  
+  margin: 0 auto;
 }
 
 .snake,
@@ -90,7 +103,7 @@ body {
   background: red;
 }
 .food {
-  background: yellow;
+  transform: scale(1.4);
   animation: flick 1.5s linear infinite;
   border-radius: 50%;
 }
@@ -130,39 +143,39 @@ body {
   }
 }
 
-
 .direction-buttons {
   margin-top: 20px;
   position: relative;
+  margin-left: 200px;
+  margin-top: -130px;
 }
-.direction-buttons button{
+.direction-buttons button {
   position: absolute;
   width: 50px;
   height: 50px;
   border: none;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   font-size: 24px;
   z-index: 200;
 }
 
-.direction-buttons button:hover{
+.direction-buttons button:hover {
   background-color: #2f7b32;
 }
 
-
-.direction-buttons .ArrowUp{
+.direction-buttons .ArrowUp {
   left: -20px;
 }
-.direction-buttons .ArrowRight{
+.direction-buttons .ArrowRight {
   right: -100px;
   top: 60px;
 }
-.direction-buttons .ArrowLeft{
+.direction-buttons .ArrowLeft {
   left: -90px;
   top: 60px;
 }
-.direction-buttons .ArrowDown{
+.direction-buttons .ArrowDown {
   bottom: -170px;
   left: -18px;
 }
@@ -180,4 +193,38 @@ body {
 
 .ArrowRight:before {
   content: "\25B6";
+}
+
+.setSpeed{
+  display: flex;
+  flex-direction: column;
+}
+.setSpeed label{
+  color:#37ff3d;
+  font-size: 18px;
+  font-weight: 600;
+}
+.setSpeed button{
+  margin-top: 20px;
+  padding: 8px 12px;
+  font-size: 18px;
+  background-color: #09c110;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  transition: 0.2s ease-out;
+}
+.setSpeed button:hover{
+  background-color: #109214;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 780px) {
+  .container {
+    flex-direction: column;
+  }
+  .direction-buttons {
+    margin-left: 0;
+    margin-top: 20px;
+  }
 }
