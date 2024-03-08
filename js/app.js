@@ -1,10 +1,14 @@
-'use strict';
+"use strict";
 
 const board = document.getElementById("grid");
 const scoreBoard = document.querySelector(".current_score");
 const highScore = document.querySelector(".high_score");
+const gameOverBoard = document.querySelector(".game_over_board");
+const gameOverText = document.querySelector(".game_over_board h2");
+const game_over = new Audio('./audio/game_over.mp3');
+const snake_eating = new Audio('./audio/snake_eating.mp3');
 
-let currentSnake = [2,1,0];
+let currentSnake = [2, 1, 0];
 let direction = 1;
 let width = 30;
 let speed = 5;
@@ -13,14 +17,13 @@ let foodIndex = 0;
 let score = 0;
 let interval;
 
-
 for (let i = 0; i < 900; i++) {
   let cell = document.createElement("div");
+  cell.classList.add('single_grid');
   board.appendChild(cell);
 }
 
-
-const cells = document.querySelectorAll("#grid div");
+const cells = document.querySelectorAll("#grid .single_grid");
 cells[currentSnake[0]].classList.add("head");
 
 for (let i = 0; i < currentSnake.length; i++) {
@@ -42,7 +45,7 @@ function gameLoop() {
 window.addEventListener("DOMContentLoaded", moveSnakeByKey);
 
 function moveSnakeByKey() {
-  highScore.innerHTML = `High score:  ${localStorage.getItem('score')}`;
+  highScore.innerHTML = `High score:  ${localStorage.getItem("score")}`;
 
   window.addEventListener("keydown", function (keys) {
     switch (keys.key) {
@@ -62,8 +65,7 @@ function moveSnakeByKey() {
   });
 }
 
-
-function moveSnake(){
+function moveSnake() {
   let tail = currentSnake.pop();
   cells[tail].classList.remove("snake");
   currentSnake.unshift(currentSnake[0] + direction);
@@ -73,22 +75,30 @@ function moveSnake(){
   eatFood(tail);
 }
 
-
 function gameOver() {
-  let gameOverSound = new Audio("./audio/gameOver.m4a");
-  let getting_score = localStorage.getItem('score');
-  gameOverSound.play();
-  clearInterval(interval);
-  console.log(localStorage.getItem('score'));
-  if(score > getting_score){
-  highScore.innerHTML = `High score:  ${localStorage.getItem('score')}`;
+  let highScoreValue = parseInt(localStorage.getItem("score")) || 0;
+  if (score > highScoreValue) {
+    localStorage.setItem("score", score);
+    highScore.innerHTML = `High score:  ${score}`;
   }
+  game_over.play();
+  clearInterval(interval);
+  pushGameOverBox();
+
+}
+
+function pushGameOverBox(){
+  gameOverBoard.style.display = 'flex';
+  setTimeout(()=>{
+    gameOverText.style.transform = 'scale(1.2)';
+  },100)
 
 }
 
 function eatFood(tail) {
   if (currentSnake[0] == foodIndex) {
     cells[foodIndex].classList.remove("food");
+    snake_eating.play();
     placeFood();
     increaseSnake(tail);
   }
@@ -98,14 +108,12 @@ function increaseSnake(tail) {
   cells[tail].classList.add("food");
   currentSnake.push(tail);
   cells[tail].classList.remove("food");
-  countPoint();
-  
+  countScore();
 }
 
-function countPoint(){
+function countScore() {
   score += 5;
-  scoreBoard.innerHTML = `score: ${score}`;
-  localStorage.setItem('score', score);
+  scoreBoard.innerHTML = `Score: ${score}`;
 }
 
 placeFood();
@@ -127,22 +135,19 @@ function makeRandomFood() {
 }
 
 function chekForHits() {
-
   const snakeArrayDuplicate = [...currentSnake];
   const head = snakeArrayDuplicate.shift();
 
   // Check if the head hits the border
   if (
-    (direction === 1 && currentSnake[0] % 30 === 30 - 1 ) || 
-    (direction === -1 && currentSnake[0] % 30 === 0 ) || 
-    (direction === -30 && currentSnake[0] - 30 < 0  ) || 
-    (direction === 30 && currentSnake[0] + 30 >= 30 * 30 ) || 
+    (direction === 1 && currentSnake[0] % 30 === 30 - 1) ||
+    (direction === -1 && currentSnake[0] % 30 === 0) ||
+    (direction === -30 && currentSnake[0] - 30 < 0) ||
+    (direction === 30 && currentSnake[0] + 30 >= 30 * 30) ||
     snakeArrayDuplicate.includes(head)
   ) {
     return true;
-    
-  }else{
+  } else {
     return false;
   }
 }
-
