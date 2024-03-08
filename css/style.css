@@ -31,7 +31,7 @@ body {
   background-image: linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)) ,url(../img/snakeBoard.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: cernter;
+  background-position: center;
   width: 300px;
   height: 300px;
   /* border: 2px solid #c00505; */
@@ -128,4 +128,56 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+
+.direction-buttons {
+  margin-top: 20px;
+  position: relative;
+}
+.direction-buttons button{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 24px;
+  z-index: 200;
+}
+
+.direction-buttons button:hover{
+  background-color: #2f7b32;
+}
+
+
+.direction-buttons .ArrowUp{
+  left: -20px;
+}
+.direction-buttons .ArrowRight{
+  right: -100px;
+  top: 60px;
+}
+.direction-buttons .ArrowLeft{
+  left: -90px;
+  top: 60px;
+}
+.direction-buttons .ArrowDown{
+  bottom: -170px;
+  left: -18px;
+}
+.ArrowUp:before {
+  content: "\25B2";
+}
+
+.ArrowLeft:before {
+  content: "\25C0";
+}
+
+.ArrowDown:before {
+  content: "\25BC";
+}
+
+.ArrowRight:before {
+  content: "\25B6";
 }

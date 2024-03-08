@@ -7,6 +7,7 @@ const gameOverBoard = document.querySelector(".game_over_board");
 const gameOverText = document.querySelector(".game_over_board h2");
 const game_over = new Audio('./audio/game_over.mp3');
 const snake_eating = new Audio('./audio/snake_eating.mp3');
+const arrowButtons = document.querySelectorAll('.arrowBtns');
 
 let currentSnake = [2, 1, 0];
 let direction = 1;
@@ -47,22 +48,7 @@ window.addEventListener("DOMContentLoaded", moveSnakeByKey);
 function moveSnakeByKey() {
   highScore.innerHTML = `High score:  ${localStorage.getItem("score")}`;
 
-  window.addEventListener("keydown", function (keys) {
-    switch (keys.key) {
-      case "ArrowRight":
-        direction = direction != -1 ? 1 : -1;
-        break;
-      case "ArrowLeft":
-        direction = direction != 1 ? -1 : 1;
-        break;
-      case "ArrowUp":
-        direction = direction != 30 ? -30 : 30;
-        break;
-      case "ArrowDown":
-        direction = direction != -30 ? 30 : -30;
-        break;
-    }
-  });
+  window.addEventListener('keydown', function (keys){changeDirection(keys.key)})
 }
 
 function moveSnake() {
@@ -149,5 +135,26 @@ function chekForHits() {
     return true;
   } else {
     return false;
+  }
+}
+
+arrowButtons.forEach(function(btns){
+  btns.addEventListener('click',function(){changeDirection(btns.classList[0])});
+});
+
+function changeDirection(key){
+  switch(key) {
+    case "ArrowRight":
+      direction = direction != -1 ? 1 : -1;
+      break;
+    case "ArrowLeft":
+      direction = direction != 1 ? -1 : 1;
+      break;
+    case "ArrowUp":
+      direction = direction != 30 ? -30 : 30;
+      break;
+    case "ArrowDown":
+      direction = direction != -30 ? 30 : -30;
+      break;
   }
 }
