@@ -14,7 +14,6 @@ const playBtn = document.getElementById("play_btn");
 const view_speed = document.getElementById("view_speed");
 const speed_controller = document.getElementById("speed_controller");
 
-
 let currentSnake = [2, 1, 0]; // Initial position of the snake
 let direction = 1; // Initial direction of the snake (1: right, -1: left, 30: down, -30: up)
 let width = 30; // Width of the game board
@@ -22,8 +21,7 @@ let speed = 4; // Initial speed of the game
 let foodIndex = 0; // Initial index of the food position
 let score = 0; // Initial score of the game
 let speedValue = 2; // Initial speed value (for UI control)
-let interval; // Interval variable for the game loop
-
+let control_gameLoop; // Interval variable for the game loop
 
 // draw the snake cells
 for (let i = 0; i < 900; i++) {
@@ -85,7 +83,7 @@ function gameOver() {
     highScore.innerHTML = `High score:  ${score}`;
   }
   game_over.play(); // Play game over sound
-  clearInterval(interval); // Stop the game loop
+  clearInterval(control_gameLoop); // Stop the game loop
   pushGameOverBox(); // Display game over message
 }
 
@@ -200,5 +198,5 @@ rangeSpeed.addEventListener("input", function () {
 playBtn.addEventListener("click", function () {
   speed = speedValue; // Set the game speed
   gameOverBoard.style.display = "none"; // Hide game over board
-  interval = setInterval(gameLoop, speed * 50); // Start the game loop with the selected speed
+  control_gameLoop = setInterval(gameLoop, speed * 50); // Start the game loop with the selected speed
 });
